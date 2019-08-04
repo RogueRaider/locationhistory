@@ -7,7 +7,7 @@ import sys
 
 print('Opening file...')
 
-with open("E:\Location History\Takeout\LocationHistory.json", "r") as locationJSON:
+with open("D:\Takeout\Location History\Location History.json", "r") as locationJSON:
     dictionary = json.load(locationJSON)
     locationJSON.close()
     
@@ -31,8 +31,8 @@ for record in dictionary['locations']:
     timestamp = datetime.datetime.fromtimestamp(float(record["timestampMs"])/1000, localTimezone) 
 
     #define tax year dates
-    taxStartDate = datetime.datetime(2016,07,01,tzinfo=localTimezone) #.strftime('%a, %d %b %Y %H:%M:%S')
-    taxEndDate = datetime.datetime(2017,06,30,tzinfo=localTimezone)         
+    taxStartDate = datetime.datetime(2018, 7, 1, tzinfo=localTimezone) #.strftime('%a, %d %b %Y %H:%M:%S')
+    taxEndDate = datetime.datetime(2019,6,30,tzinfo=localTimezone)
 
     #check if in range
     if timestamp > taxStartDate and timestamp < taxEndDate:
@@ -51,7 +51,7 @@ print("\nWriting new file...")
 newDic = {'locations' : []}
 newDic['locations'] = newList
 
-with open("finacialYear.json", 'w') as outfile:
+with open("D:\Takeout\Location History\FinacialYear.json", 'w') as outfile:
     json.dump(newDic, outfile)
     outfile.close()
     
